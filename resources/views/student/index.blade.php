@@ -1,48 +1,50 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">Formulario de Registro</h4>
-                    </div>
-                    <div class="card-body">
-                        <form>
-                            <div class="mb-3">
-                                <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="nombre" name="nombre" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="apellidos" class="form-label">Apellidos <span
-                                        class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="apellidos" name="apellidos" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="escuela" class="form-label">Escuela</label>
-                                <select class="form-control" id="escuela" name="escuela">
-                                    <!-- Opciones para las escuelas (se pueden cargar desde la base de datos) -->
-                                    <option value="1">Escuela 1</option>
-                                    <option value="2">Escuela 2</option>
-                                    <option value="3">Escuela 3</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="fecha-nacimiento" class="form-label">Fecha de Nacimiento <span
-                                        class="text-danger">*</span></label>
-                                <input type="date" class="form-control" id="fecha-nacimiento" name="fecha-nacimiento"
-                                    required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="ciudad-natal" class="form-label">Ciudad Natal</label>
-                                <input type="text" class="form-control" id="ciudad-natal" name="ciudad-natal">
-                            </div>
-                            <button type="submit" class="btn btn-primary">Enviar</button>
-                        </form>
-                    </div>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    Lista de Escuelas
+                    <a href="{{ route('students.create') }}" class="btn btn-success btn-sm float-end">Crear Estudiante</a>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellidos</th>
+                                <th>Escuela</th>
+                                <th>Fecha de nacimiento</th>
+                                <th>Ciudad natal</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($students as $student)
+                                <tr>
+                                    <td>{{ $student->first_name }}</td>
+                                    <td>{{ $student->last_name }}</td>
+                                    <td>{{ $student->school->name ?? '' }}</td>
+                                    <td>{{ $student->date_of_birth }}</td>
+                                    <td>{{ $student->hometown }}</td>
+                                    <td>
+                                        <a href="{{ route('students.show', $student->id) }}" class="btn btn-info btn-sm">Vista Previa</a>
+                                        <a href="{{ route('students.edit', $student->id) }}" class="btn btn-primary btn-sm">Editar</a>
+                                        <form action="{{ route('students.destroy', $student->id) }}" method="POST" style="display: inline-block;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro?')">Eliminar</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection

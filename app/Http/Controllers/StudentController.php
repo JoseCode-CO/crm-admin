@@ -2,19 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentRequest;
+use App\Repositories\StudentRepository;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    protected $studentRepository;
+
+    public function __construct(StudentRepository $studentRepository)
+    {
+        $this->studentRepository = $studentRepository;
+    }
 
     public function index()
     {
-        return view('student.index');
+        $students = $this->studentRepository->getAll();
+        return view('student.index', compact('students'));
     }
 
     /**
@@ -24,7 +28,8 @@ class StudentController extends Controller
      */
     public function create()
     {
-
+        $schools = $this->studentRepository->selectSchools();
+        return view('student.create', compact('schools'));
     }
 
     /**
@@ -33,9 +38,11 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
-        //
+        $this->studentRepository->create($request->all());
+
+        return redirect()->route('students.create')->with('success', 'Estudiante creado exitosamente');
     }
 
     /**
@@ -46,7 +53,8 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        $student = $this->studentRepository->findById($id);
+        return view('student.show', compact('student'));
     }
 
     /**
@@ -57,7 +65,8 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $student = $this->studentRepository->findById($id);
+        return view('student.edit', compact('student'));
     }
 
     /**
@@ -67,9 +76,10 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StudentRequest $request, $id)
     {
-        //
+        $this->studentRepository->update($request->all(), $id);
+        return redirect()->route('students.index')->with('success', 'Estudiante actualizada exitosamente');
     }
 
     /**
@@ -80,6 +90,7 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $this->studentRepository->delete($id);
+        return redirect()->route('students.index')->with('success', 'Estudiante eliminada exitosamente');
     }
 }

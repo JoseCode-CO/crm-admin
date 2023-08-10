@@ -13,7 +13,7 @@ class StudentRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,21 @@ class StudentRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'date_of_birth' => 'required|date',
+            'hometown' => 'nullable|string'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'first_name.required' => 'El nombre es requerido.',
+            'last_name.required' => 'Los apellidos son requeridos.',
+            'date_of_birth.required' => 'La fecha de nacimiento es requerida.',
+            'date_of_birth.date' => 'La fecha de nacimiento debe ser una fecha válida.',
+            'hometown.string' => 'La ciudad natal debe ser un texto válido.',
         ];
     }
 }
