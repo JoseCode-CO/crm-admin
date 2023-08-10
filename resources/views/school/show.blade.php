@@ -11,10 +11,10 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="{{ asset('storage/' . $school->logotipo) }}" alt="{{ $school->nombre }}" class="img-fluid rounded">
+                            <img src="{{ asset('storage/' . $school->logo) }}" alt="{{ $school->name }}" class="img-fluid rounded">
                         </div>
                         <div class="col-md-8">
-                            <p><strong>Dirección:</strong> {{ $school->adress }}</p>
+                            <p><strong>Dirección:</strong> {{ $school->address }}</p>
                             <p><strong>Correo Electrónico:</strong> {{ $school->email }}</p>
                             <p><strong>Teléfono:</strong> {{ $school->phone }}</p>
                             <p><strong>Página Web:</strong> <a href="{{ $school->website }}">{{ $school->pagina_web }}</a></p>

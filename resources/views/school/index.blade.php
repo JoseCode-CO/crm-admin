@@ -18,7 +18,6 @@
                                 <th>Logotipo</th>
                                 <th>Correo Electrónico</th>
                                 <th>Teléfono</th>
-                                <th>Página Web</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -36,7 +35,6 @@
                                     </td>
                                     <td>{{ $school->email }}</td>
                                     <td>{{ $school->phone }}</td>
-                                    <td>{{ $school->website }}</td>
                                     <td>
                                         <a href="{{ route('schools.show', $school->id) }}" class="btn btn-info btn-sm">Vista Previa</a>
                                         <a href="{{ route('schools.edit', $school->id) }}" class="btn btn-primary btn-sm">Editar</a>
