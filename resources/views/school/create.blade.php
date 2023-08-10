@@ -10,30 +10,48 @@
                     <a href="{{ route('schools.index') }}" class="btn btn-success btn-sm float-end">Ver Escuelas</a>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('schools.store') }}" method="POST" class="row g-3 needs-validation">
+                    <form action="{{ route('schools.store') }}" method="POST" class="row g-3 needs-validation" enctype="multipart/form-data">
                         <div class="mb-3">
                             <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="nombre" name="name" required>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="nombre" name="name" value="{{ old('name') }}">
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="direccion" class="form-label">Dirección <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="direccion" name="address" required>
+                            <input type="text" class="form-control @error('address') is-invalid @enderror" id="direccion" name="address" value="{{ old('address') }}">
+                            @error('address')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="logotipo" class="form-label">Logotipo (mínimo 200x200 y no más de 2 MB)</label>
-                            <input type="file" class="form-control" id="logotipo" name="logo" accept="image/*" required>
+                            <input type="file" class="form-control @error('logo') is-invalid @enderror" id="logotipo" name="logo" accept="image/*">
+                            @error('logo')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="correo" class="form-label">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="correo" name="email">
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="correo" name="email" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="number" class="form-control" id="telefono" name="phone">
+                            <input type="number" class="form-control @error('phone') is-invalid @enderror" id="telefono" name="phone" value="{{ old('phone') }}">
+                            @error('phone')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="pagina-web" class="form-label">Página Web</label>
-                            <input type="url" class="form-control" id="pagina-web" name="website">
+                            <input type="url" class="form-control @error('website') is-invalid @enderror" id="pagina-web" name="website" value="{{ old('website') }}">
+                            @error('website')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
                         @csrf
                         <button type="submit" class="btn btn-primary">Guardar</button>

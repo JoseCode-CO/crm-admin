@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SchoolRequest;
 use App\Repositories\SchoolRepository;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class SchoolController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SchoolRequest $request)
     {
         $this->schoolRepository->create($request->all());
 
@@ -78,7 +79,7 @@ class SchoolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SchoolRequest $request, $id)
     {
         $this->schoolRepository->update($request->all(), $id);
         return redirect()->route('schools.index')->with('success', 'Escuela actualizada exitosamente');
