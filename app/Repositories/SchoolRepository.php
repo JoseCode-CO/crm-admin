@@ -26,7 +26,7 @@ class SchoolRepository implements CrudRepositoryInterface
 
     public function update(array $data, int $id): bool
     {
-        return School::where('id', $id)->update($data);
+        return School::find($id)->update($data);
     }
 
     public function delete(int $id): bool
