@@ -4,33 +4,38 @@ namespace App\Repositories;
 
 use App\Interfaces\CrudRepositoryInterface;
 use App\Models\School;
+use App\Models\Student;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 
-class SchoolRepository implements CrudRepositoryInterface
+class StudentRepository implements CrudRepositoryInterface
 {
     public function getAll(): Collection
     {
-        return School::all();
+        return Student::all();
     }
 
     public function findById(int $id): ?Model
     {
-        return School::find($id);
+        return Student::find($id);
     }
 
     public function create(array $data): Model
     {
-        return School::create($data);
+        return Student::create($data);
     }
 
     public function update(array $data, int $id): bool
     {
-        return School::where('id', $id)->update($data);
+        return Student::find($id)->update($data);
     }
 
     public function delete(int $id): bool
     {
-        return School::destroy($id);
+        return Student::destroy($id);
+    }
+
+    public function selectSchools(){
+        return School::select('name as label', 'id as value')->get();
     }
 }
