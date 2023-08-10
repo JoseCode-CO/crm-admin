@@ -19,4 +19,10 @@ class School extends Model
     ];
 
     public $timestamps = true;
+
+    public function students()
+{
+    return $this->hasMany(Student::class);
+}
+
 }
