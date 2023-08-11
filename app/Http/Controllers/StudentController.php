@@ -13,6 +13,7 @@ class StudentController extends Controller
     public function __construct(StudentRepository $studentRepository)
     {
         $this->studentRepository = $studentRepository;
+        $this->middleware('auth');
     }
 
     public function index()
@@ -65,8 +66,9 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
+        $schools = $this->studentRepository->selectSchools();
         $student = $this->studentRepository->findById($id);
-        return view('student.edit', compact('student'));
+        return view('student.edit', compact('student', 'schools'));
     }
 
     /**

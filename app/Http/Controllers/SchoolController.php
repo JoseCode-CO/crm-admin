@@ -13,6 +13,7 @@ class SchoolController extends Controller
     public function __construct(SchoolRepository $schoolRepository)
     {
         $this->schoolRepository = $schoolRepository;
+        $this->middleware('auth');
     }
     /**
      * Display a listing of the resource.
