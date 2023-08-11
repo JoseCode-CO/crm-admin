@@ -27,8 +27,14 @@ class StudentRepository implements CrudRepositoryInterface
 
     public function update(array $data, int $id): bool
     {
-        return Student::find($id)->update($data);
+        $student = Student::find($id);
+        if ($student) {
+            $updated = $student->update($data);
+            return $updated;
+        }
+        return false;
     }
+
 
     public function delete(int $id): bool
     {

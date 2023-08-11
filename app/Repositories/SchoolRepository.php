@@ -34,7 +34,7 @@ class SchoolRepository implements CrudRepositoryInterface
             'address' => $data['address'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'logo' => $imgUrl,
+            'logo' => $imgUrl ?? ''
         ]);
     }
 
@@ -52,7 +52,7 @@ class SchoolRepository implements CrudRepositoryInterface
             }
 
             $imgUrl = GeneralController::imgUpload($data['logo']);
-            $data['logo'] = $imgUrl;
+            $data['logo'] = $imgUrl ?? '';
         }
 
         return $school->update($data);

@@ -27,7 +27,8 @@ class StudentRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'date_of_birth' => 'required|date',
-            'hometown' => 'nullable|string'
+            'hometown' => 'nullable|string',
+            'schools_id' => 'nullable'
         ];
     }
 

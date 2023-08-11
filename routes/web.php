@@ -23,4 +23,4 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('schools', SchoolController::class);
-Route::resource('students', StudentController::class)->except(['update']);
+Route::resource('students', StudentController::class);

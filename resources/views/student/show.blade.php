@@ -10,7 +10,7 @@
                         <div class="col-md-8">
                             <p><strong>Nombre:</strong> {{ $student->first_name }}</p>
                             <p><strong>Apellidos:</strong> {{ $student->last_name }}</p>
-                            <p><strong>Escuela:</strong> {{$student->school->name  }}</p>
+                            <p><strong>Escuela:</strong> {{$student->school->name ?? '' }}</p>
                             <p><strong>Ciudad natal:</strong> {{ $student->hometown }}</p>
                             <p><strong>Fecha de nacimiento:</strong>{{ $student->date_of_birth }}</a></p>
                         </div>
