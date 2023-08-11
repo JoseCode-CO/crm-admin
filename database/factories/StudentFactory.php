@@ -24,7 +24,9 @@ class StudentFactory extends Factory
             'last_name' => $this->faker->lastName,
             'date_of_birth' => $this->faker->date,
             'hometown' => $this->faker->city,
-            'schools_id' => 1
+            'schools_id' => function () {
+                return School::inRandomOrder()->first()->id;
+            },
         ];
     }
 }
