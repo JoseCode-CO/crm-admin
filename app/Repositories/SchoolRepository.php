@@ -15,7 +15,7 @@ class SchoolRepository implements CrudRepositoryInterface
 {
     public function getAll()
     {
-        return School::paginate(10);
+        return School::orderBy('created_at', 'desc')->paginate(10);
     }
 
     public function findById(int $id): ?Model

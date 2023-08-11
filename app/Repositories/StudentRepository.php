@@ -13,7 +13,7 @@ class StudentRepository implements CrudRepositoryInterface
 {
     public function getAll()
     {
-        return Student::paginate(10);
+        return Student::orderBy('created_at', 'desc')->paginate(10);
     }
 
     public function findById(int $id): ?Model
