@@ -7,14 +7,15 @@ use App\Interfaces\CrudRepositoryInterface;
 use App\Models\School;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class SchoolRepository implements CrudRepositoryInterface
 {
-    public function getAll(): Collection
+    public function getAll()
     {
-        return School::all();
+        return School::paginate(10);
     }
 
     public function findById(int $id): ?Model

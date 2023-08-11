@@ -17,8 +17,6 @@
                             <thead>
                                 <tr>
                                     <th>Nombre</th>
-                                    <th>Dirección</th>
-                                    <th>Logotipo</th>
                                     <th>Correo Electrónico</th>
                                     <th>Teléfono</th>
                                     <th>Acciones</th>
@@ -28,14 +26,6 @@
                                 @foreach($schools as $school)
                                     <tr>
                                         <td>{{ $school->name }}</td>
-                                        <td>{{ $school->address }}</td>
-                                        <td>
-                                            @if($school->logotipo)
-                                                <img src="{{ asset('storage/' . $school->logotipo) }}" alt="Logotipo" width="50">
-                                            @else
-                                                Sin logotipo
-                                            @endif
-                                        </td>
                                         <td>{{ $school->email }}</td>
                                         <td>{{ $school->phone }}</td>
                                         <td>
@@ -51,6 +41,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="d-flex justify-content-center">
+                            {!! $schools->links() !!}
+                        </div>
                     @endif
                 </div>
             </div>

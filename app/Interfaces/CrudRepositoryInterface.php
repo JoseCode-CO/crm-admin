@@ -4,6 +4,7 @@ namespace App\Interfaces;
 
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface CrudRepositoryInterface
 {
@@ -12,7 +13,7 @@ interface CrudRepositoryInterface
      *
      * @return Collection
      */
-    public function getAll(): Collection;
+    public function getAll();
 
     /**
      * Find a record by its ID.

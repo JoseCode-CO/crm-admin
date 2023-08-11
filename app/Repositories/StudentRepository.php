@@ -7,12 +7,13 @@ use App\Models\School;
 use App\Models\Student;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class StudentRepository implements CrudRepositoryInterface
 {
-    public function getAll(): Collection
+    public function getAll()
     {
-        return Student::all();
+        return Student::paginate(10);
     }
 
     public function findById(int $id): ?Model
